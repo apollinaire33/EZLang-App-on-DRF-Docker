@@ -14,17 +14,17 @@ For getting access to authorized only/author only use Postman/frontend client pr
 <br>
 /api/v1/user/user_list/ - User List for all<br>
 <br>
-/api/v1/quize_main/quizes/id - Quiz administrating for admin only<br>
+/api/v1/quiz_main/quizes/id - Quiz administrating for admin only<br>
 <br>
-/api/v1/quize_main/filter/(tasked, finished, failed)/ - Quiz filtering list for certain user<br>
+/api/v1/quiz_main/filter/(tasked, finished, failed)/ - Quiz filtering list for certain user<br>
 <br>
-/api/v1/quize_main/questions/ - Question administrating for admin only<br>
+/api/v1/quiz_main/questions/ - Question administrating for admin only<br>
 <br>
-/api/v1/quize_main/answers/id - Answer administrating for admin only<br>
+/api/v1/quiz_main/answers/id - Answer administrating for admin only<br>
 <br>
-/api/v1/quize_main/messages/user_answers/id - Creating user answers only by authenticated<br>
+/api/v1/quiz_main/messages/user_answers/id - Creating user answers only by authenticated<br>
 <br>
-/api/v1/quize_main/quiz_takers/id - Quiztaker adminstrating for admin only<br>
+/api/v1/quiz_main/quiz_takers/id - Quiztaker adminstrating for admin only<br>
 <br>
 /api/v1/howework/admin/id - Homework adminstrating for admin only<br>
 <br>
