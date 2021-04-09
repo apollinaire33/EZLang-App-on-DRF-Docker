@@ -3,6 +3,8 @@ docker-compose up<br>
 <br>
 Use http://192.168.99.100:8000/ to get to the project site<br>
 <br>
+You also can run 'pytest' command and view htmlcov/index.html for tested code 
+<br>
 <br>
 API endpoints:<br>
 <br>
