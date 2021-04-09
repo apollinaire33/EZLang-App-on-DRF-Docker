@@ -7,8 +7,8 @@ from homework.views import (HomeworkAdministratingViewSet,
 
 router = routers.DefaultRouter()
 
-router.register(r'admin', HomeworkAdministratingViewSet)
-router.register(r'', HomeworkViewSet)
-router.register(r'task_load', HomeworkTaskViewSet)
+router.register(r'admin', HomeworkAdministratingViewSet, basename='for-admin')
+router.register(r'', HomeworkViewSet, basename='homework_list_for_user')
+router.register(r'task_load', HomeworkTaskViewSet, basename='homework-task-loading')
 
 urlpatterns = router.urls

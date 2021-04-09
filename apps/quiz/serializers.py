@@ -54,7 +54,7 @@ class QuizUserSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Quiz
 		fields = ['id', 'category', 'created_at', 'date_expiry', 
-				'questions_count', 'status', 'quiztaker_set']
+				  'questions_count', 'status', 'quiztaker_set']
 		read_only_fields = ['questions_count']
 
 	# Counting the number of questions in quiz
@@ -64,13 +64,13 @@ class QuizUserSerializer(serializers.ModelSerializer):
 	# Non-model fields for quiztaker of quiz and its status for sertain user
 	def get_quiztaker_set(self, obj):		
 		quiztaker = QuizTaker.objects.get(user=self.context['request'].user.id, 
-										quiz=obj)
+										  quiz=obj)
 		serializer = QuizTakerSerializer(quiztaker)
 		return serializer.data
 
 	def get_status(self, obj):
 		quiztaker = QuizTaker.objects.get(user=self.context['request'].user.id, 
-										quiz=obj)
+										  quiz=obj)
 		return quiztaker.status
 
 

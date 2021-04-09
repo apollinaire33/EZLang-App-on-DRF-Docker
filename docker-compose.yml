@@ -12,12 +12,6 @@ services:
       - 8000:8000
     depends_on:
       - db
-    command: bash -c "python manage.py makemigrations homework &&
-                      python manage.py makemigrations quiz &&
-                      python manage.py makemigrations user &&
-                      python manage.py migrate &&
-                      python manage.py runserver 0.0.0.0:8000"
-
   db:
     image: "postgres"
     restart: on-failure

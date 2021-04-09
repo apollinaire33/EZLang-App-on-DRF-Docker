@@ -2,12 +2,12 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth import get_user_model
 
-from homework.models import UserMark 
+from homework.services import UserMark 
 from quiz.enums import QuizCategory, QuizStatus
 from quiz.services import QuizObjectVerification
 
-User = get_user_model()
 
+User = get_user_model()
 
 class Quiz(models.Model):
     category = models.CharField(max_length=50, choices=QuizCategory.choices, default='')
@@ -16,13 +16,6 @@ class Quiz(models.Model):
 
     def __str__(self):
         return str(self.id)
-
-    # Func for creating quiztakers for every user after every creating of Quiz model
-    def save(self, *args, **kwargs): 
-        super().save(*args, **kwargs)
-        for i in User.objects.all():
-            if not QuizTaker.objects.filter(user=i, quiz=self):
-                QuizTaker.objects.create(user=i, quiz=self)
 
 
 class Question(models.Model):
@@ -59,7 +52,7 @@ class QuizTaker(models.Model):
         super().save(*args, **kwargs)
         current_quiz = QuizTaker.objects.filter(user=self.user, quiz=self.quiz)[0]
         if current_quiz and (current_quiz.status == 'Finished' or 
-                            current_quiz.status == 'Failed'):
+                             current_quiz.status == 'Failed'):
             QuizObjectVerification.deny_quiz_object(self, 
                                                     'You already completed this quiz!', 
                                                     QuizTaker)

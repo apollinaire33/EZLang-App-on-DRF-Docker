@@ -16,9 +16,9 @@ router.register(r'user_answers', UserAnswerViewSet)
 
 # Urls for filtering
 urlpatterns = [
-    path('filter/tasked/', QuizFilterViewSet.as_view({'get': 'list_tasked'})),
-    path('filter/finished/', QuizFilterViewSet.as_view({'get': 'list_finished'})),
-    path('filter/failed/', QuizFilterViewSet.as_view({'get': 'list_failed'})),
+    path('filter/tasked/', QuizFilterViewSet.as_view({'get': 'list_tasked'}), name='tasked'),
+    path('filter/finished/', QuizFilterViewSet.as_view({'get': 'list_finished'}), name='finished'),
+    path('filter/failed/', QuizFilterViewSet.as_view({'get': 'list_failed'}), name='failed'),
 ]
 
 urlpatterns += router.urls

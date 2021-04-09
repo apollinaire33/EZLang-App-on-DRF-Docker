@@ -1,15 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-from rest_framework import status
-from rest_framework.response import Response
+from django.contrib.auth.models import (AbstractBaseUser, 
+                                        PermissionsMixin, 
+                                        BaseUserManager)
 
 
 class UserAccountManager(BaseUserManager):
     def create_user(self, email, name, password=None):
-        if not email:
-            content = {'error': 'Users must have an email address'}
-            return Response(content, status=status.HTTP_409_CONFLICT)
-        
         email = self.normalize_email(email)
         user = self.model(email=email, name=name)
 
