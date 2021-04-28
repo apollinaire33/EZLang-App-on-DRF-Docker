@@ -49,6 +49,7 @@ class TestQuizFilterViewSet(TestAuth):
     def test_quiz_filter_list_works(self):
         # create homework
         quiz_tasked = mixer.blend(Quiz, date_expiry='9999-04-08T12:24:17Z')
+        quiz_tasked1 = mixer.blend(Quiz, date_expiry='4555-04-08T12:24:17Z')
         quiz_taker_tasked = mixer.blend(QuizTaker, quiz=quiz_tasked, user=self.our_user, status='Tasked')
         
         quiz_tasked_and_failed = mixer.blend(Quiz)
@@ -59,7 +60,7 @@ class TestQuizFilterViewSet(TestAuth):
         
         assert response_tasked.json() != None
         assert len(response_tasked.json()) == 1
-        assert response_tasked.status_code == 200 
+        assert response_tasked.status_code == 200
 
 
         quiz_finished = mixer.blend(Quiz)
@@ -161,8 +162,8 @@ class TestQuizTakerViewSet(TestAuth):
         url = reverse('apiv1:quiztaker-list')
         input_data = {
             'user': self.our_user.pk, 
-            'quiz': quiz_new.pk, 
-            'score': 0, 
+            'quiz': quiz_new.pk,
+            'score': 0,
             'status': 'Tasked', 
             'date_finished': datetime.datetime.now(), 
             'date_started': datetime.datetime.now()

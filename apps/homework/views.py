@@ -11,15 +11,10 @@ from homework.services import UserMark, HomeworkObjectVerification
 
 
 # Viewset for administrating all homeworks
-class HomeworkAdministratingViewSet(viewsets.mixins.RetrieveModelMixin,
-                                    viewsets.mixins.ListModelMixin,
-                                    viewsets.mixins.UpdateModelMixin,
-                                    viewsets.mixins.CreateModelMixin,
-                                    viewsets.mixins.DestroyModelMixin,
-                                    viewsets.GenericViewSet):
+class HomeworkAdministratingViewSet(viewsets.ModelViewSet):
     queryset = Homework.objects.all()
     serializer_class = HomeworkSerializer
-    permission_classes = (permissions.IsAuthenticated, )
+    permission_classes = (permissions.IsAdminUser, )
     filter_backends = (filters.DjangoFilterBackend, )
     filterset_fields = ('status', )
 
@@ -39,12 +34,13 @@ class HomeworkViewSet(viewsets.mixins.ListModelMixin,
             request, 
             "Stop fooling around with other people's homework list! Shame on you!")
         homework_list = Homework.objects.filter(user=request.user.id)
-
+        print(homework_list)
         for i in homework_list:
             if i.date_expiry < timezone.now():
                 Homework.objects.filter(id=i.id).update(status='Failed',
                                                         mark=0)
                 UserMark.common_hw_mark(request.user.id)
+                print(i.date_expiry)
 
         serializer = self.get_serializer(homework_list, many=True)
         return Response(serializer.data)

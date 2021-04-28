@@ -33,7 +33,7 @@ class TestHomeworkAdministratingViewSet(TestCase):
         from django.contrib.auth import get_user_model
         User = get_user_model()
 
-        self.our_user = User.objects.create_user(email='test@mail.ru', password='1234', name='qwerty')   
+        self.our_user = User.objects.create_superuser(email='test@mail.ru', password='1234', name='qwerty')
 
         self.token_url = 'http://localhost:8000/api/token/'
 
