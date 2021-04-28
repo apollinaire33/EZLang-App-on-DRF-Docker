@@ -21,7 +21,7 @@ class TestUserAccountModel(TestCase):
         }
 
         response = self.client.post(self.register_url, data=user_data)
-        print(response.json())
+
         assert response.json()['email'][0] == 'This field is required.'
         assert response.status_code == 400
 
@@ -35,7 +35,6 @@ class TestUserAccountModel(TestCase):
 
         response_error = self.client.post(self.register_url, data=user_data)
 
-        print(response_error.json())
         assert response_error.json()['email'][0] == 'user account with this email already exists.'
         assert response_error.status_code == 400
 

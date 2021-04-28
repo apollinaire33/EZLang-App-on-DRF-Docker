@@ -25,7 +25,6 @@ class TestHomeworkAdministratingViewSet(TestCase):
         # self.our_user = User.objects.create(email='test@mail.ru', password='1234')        
 
         # self.token = Token.objects.create(user=self.our_user)
-        # print(self.token.key, 'token')
 
         # self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token.key)
 
